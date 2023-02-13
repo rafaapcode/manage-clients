@@ -1,10 +1,9 @@
-import { Observable } from 'rxjs';
 import { Entity } from './entity';
 
-abstract class Respository<TEntity extends Entity> {
-  abstract create(data: TEntity): Observable<TEntity>;
-  abstract update(id: number, data: TEntity): Observable<TEntity>;
-  abstract patch(id: number, data: Partial<TEntity>): Observable<TEntity>;
-  abstract getById(id: number): Observable<TEntity>;
-  abstract getAll(): Observable<TEntity[]>;
+export abstract class Respository<TEntity extends Entity> {
+  abstract create(data: TEntity): Promise<TEntity>;
+  abstract update(id: number, data: TEntity): Promise<TEntity>;
+  abstract patch(id: number, data: Partial<TEntity>): Promise<TEntity>;
+  abstract getById(id: number): Promise<TEntity>;
+  abstract getAll(): Promise<TEntity[]>;
 }
