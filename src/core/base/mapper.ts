@@ -1,4 +1,4 @@
 export abstract class Mapper<I, O> {
-  abstract mapFromDatabase(param: I): O;
-  abstract mapToUser(param: O): I;
+  static abstract mapFromDatabase(param: I): O;
+  static abstract mapToUser(param: O): I;
 }
