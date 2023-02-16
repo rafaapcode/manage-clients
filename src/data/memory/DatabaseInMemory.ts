@@ -10,6 +10,10 @@ export class DatabaseInMemory extends Respository<ClientEntity> {
     this.databaseInMemory = [];
   }
 
+  get allDb() {
+    return this.databaseInMemory;
+  }
+
   async create(data: ClientEntity): Promise<ClientEntity> {
     this.databaseInMemory.push(data);
 
