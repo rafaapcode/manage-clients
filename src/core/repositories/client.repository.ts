@@ -3,7 +3,7 @@ import { ClientEntity } from '../domain/entities/client.entitie';
 
 export class ClientRepository extends Respository<ClientEntity> {
   db: Respository<ClientEntity>;
-  constructor(private database: Respository<ClientEntity>) {
+  constructor(public database: Respository<ClientEntity>) {
     super();
     this.db = database;
   }

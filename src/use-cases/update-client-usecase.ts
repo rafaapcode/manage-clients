@@ -1,16 +1,16 @@
-import { ClientRepository } from '../../core/repositories/client.repository';
-import { ClientCreateMapper } from '../../core/domain/mappers/client-create.mapper';
-import { ClientCreateDto } from '../../shared/dtos/client.create.dto';
+import { ClientRepository } from '../core/repositories/client.repository';
+import { ClientCreateMapper } from '../core/domain/mappers/client-create.mapper';
+import { ClientCreateDto } from '../shared/dtos/client.create.dto';
 import { IUseCase } from 'src/core/base/use-case';
-import { ClientPrismaRepository } from '../../data/remote/client-prisma-repository';
+import { Respository } from 'src/core/base/repository';
+import { ClientEntity } from 'src/core/domain/entities/client.entitie';
 
 export class PutClientUseCase implements IUseCase<ClientCreateDto> {
   private mapper: ClientCreateMapper;
   private clientRepository: ClientRepository;
-  public db = new ClientPrismaRepository();
-  constructor() {
+  constructor(database: Respository<ClientEntity>) {
     this.mapper = new ClientCreateMapper();
-    this.clientRepository = new ClientRepository(this.db);
+    this.clientRepository = new ClientRepository(database);
   }
 
   public async execute(id: number, data: ClientCreateDto) {

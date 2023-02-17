@@ -1,4 +1,4 @@
-import { Mapper } from 'src/core/base/mapper';
+import { Mapper } from '../../../../src/core/base/mapper';
 import { ClientEntity } from '../entities/client.entitie';
 import { ClientCreateDto } from '../../../shared/dtos/client.create.dto';
 

@@ -7,16 +7,23 @@ import {
   PatchClientUseCase,
   PutClientUseCase,
 } from '../../use-cases';
+import { ClientPrismaRepository } from '../../data/remote/client-prisma-repository';
 
 @Controller('/api/client')
 export class ClientController {
-  constructor(
-    private readonly getAll: GetAllClientUseCase,
-    private readonly create: CreateClientUseCase,
-    private readonly getById: GetByIdClientUseCase,
-    private readonly patch: PatchClientUseCase,
-    private readonly put: PutClientUseCase,
-  ) {}
+  private readonly db = new ClientPrismaRepository();
+  private readonly getAll = new GetAllClientUseCase(this.db);
+  private readonly create = new CreateClientUseCase(this.db);
+  private readonly getById = new GetByIdClientUseCase(this.db);
+  private readonly patch = new PatchClientUseCase(this.db);
+  private readonly put = new PutClientUseCase(this.db);
+  // constructor(
+  //   getAll: GetAllClientUseCase,
+  //   create: CreateClientUseCase,
+  //   getById: GetByIdClientUseCase,
+  //   patch: PatchClientUseCase,
+  //   put: PutClientUseCase,
+  // ) {}
 
   @Post()
   public async createClient(@Body() client: ClientCreateDto) {
