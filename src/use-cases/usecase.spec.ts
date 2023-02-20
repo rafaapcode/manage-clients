@@ -37,10 +37,16 @@ describe('Client use cases', () => {
 
   it('should return a client by id', async () => {
     const sut = new GetByIdClientUseCase(mockDatabase);
+    const client = await sut.execute(1);
+    expect(client.name).toBe('Joao');
   });
-  it('should return a client with de field updated', async () => {
+
+  it('should return a client with the field updated', async () => {
     const sut = new PatchClientUseCase(mockDatabase);
+    const client = await sut.execute(1, { birthdate: '26/09/1997' });
+    expect(client.birthdate).toBe('26/09/1997');
   });
+
   it('should return a client updated', async () => {
     const sut = new PutClientUseCase(mockDatabase);
   });
