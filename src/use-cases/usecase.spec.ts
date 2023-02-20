@@ -14,6 +14,7 @@ describe('Client use cases', () => {
   beforeAll(() => {
     mockDatabase.allDb = [];
   });
+
   it('should create a new client', async () => {
     const sut = new CreateClientUseCase(mockDatabase);
     const request = {
@@ -26,9 +27,14 @@ describe('Client use cases', () => {
     expect(client).toBeTruthy();
     expect(mockDatabase.allDb.length).toEqual(1);
   });
+
   it('should return all clients', async () => {
     const sut = new GetAllClientUseCase(mockDatabase);
+    const allClient = await sut.execute();
+    expect(allClient[0].name).toBe('Joao');
+    expect(allClient).toEqual(expect.arrayContaining([expect.any(Object)]));
   });
+
   it('should return a client by id', async () => {
     const sut = new GetByIdClientUseCase(mockDatabase);
   });
