@@ -49,5 +49,13 @@ describe('Client use cases', () => {
 
   it('should return a client updated', async () => {
     const sut = new PutClientUseCase(mockDatabase);
+    const request = {
+      name: 'Gabriel Nunes',
+      birthdate: '20/12/2015',
+      sex: 'male',
+      healthIssues: [{ name: 'Preguiça', classification: 2 }],
+    };
+    const client = await sut.execute(1, request);
+    expect(client).toEqual(request);
   });
 });
