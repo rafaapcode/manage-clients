@@ -17,10 +17,10 @@ export class RiskClientUseCase implements IUseCase<IRisk[]> {
     const risk = await this.handle();
     const sorted = risk.sort((a, b) => {
       if (a.totalRisk > b.totalRisk) {
-        return 1;
+        return -1;
       }
       if (a.totalRisk < b.totalRisk) {
-        return -1;
+        return 1;
       }
 
       return 0;
@@ -37,9 +37,9 @@ export class RiskClientUseCase implements IUseCase<IRisk[]> {
         .map(({ classification }) => classification)
         .reduce((acc, curr) => acc + curr, 0);
 
-      const score = (1 / (1 + 2.71828 - (-2.8 + sum))) * 100;
+      const score = ((1 / (1 + 2.71828 - (-2.8 + sum))) * 100).toFixed(2);
 
-      return { id, name, totalRisk: score };
+      return { id, name, totalRisk: Number(score) };
     });
 
     return risk;
