@@ -8,7 +8,6 @@ import { Respository } from '../core/base/repository';
 export class CreateClientUseCase implements IUseCase<ClientCreateDto> {
   private mapper: ClientCreateMapper;
   private clientRepository: ClientRepository;
-  // private db: Respository<ClientEntity>;
   constructor(database: Respository<ClientEntity>) {
     this.mapper = new ClientCreateMapper();
     this.clientRepository = new ClientRepository(database);

@@ -15,6 +15,7 @@ import {
   GetByIdClientUseCase,
   PatchClientUseCase,
   PutClientUseCase,
+  RiskClientUseCase,
 } from '../../use-cases';
 import { ClientPrismaRepository } from '../../data/remote/client-prisma-repository';
 
@@ -26,10 +27,11 @@ export class ClientController {
   private readonly getById = new GetByIdClientUseCase(this.db);
   private readonly patch = new PatchClientUseCase(this.db);
   private readonly put = new PutClientUseCase(this.db);
+  private readonly calcRisk = new RiskClientUseCase(this.db);
 
-  @Post()
-  public async createClient(@Body() client: ClientCreateDto) {
-    return await this.create.execute(client);
+  @Get('/risk')
+  public async riskClients() {
+    return await this.calcRisk.execute();
   }
 
   @Patch('update/:id')
@@ -51,6 +53,11 @@ export class ClientController {
   @Get(':id')
   public async getClient(@Param('id', ParseIntPipe) id: number) {
     return await this.getById.execute(id);
+  }
+
+  @Post()
+  public async createClient(@Body() client: ClientCreateDto) {
+    return await this.create.execute(client);
   }
 
   @Get()
