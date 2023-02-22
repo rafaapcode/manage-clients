@@ -14,8 +14,8 @@ model Client {
   id           Int    @id @default(autoincrement())
   name         String
   birthdate    String
-  sex          String
-  healthIssues String
+  sex          String  
+  healthIssues String @db.LongText
 
   @@map("clients")
 }

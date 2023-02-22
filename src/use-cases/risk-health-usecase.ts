@@ -14,19 +14,7 @@ export class RiskClientUseCase implements IUseCase<IRisk[]> {
   }
 
   public async execute() {
-    const risk = await this.handle();
-    const sorted = risk.sort((a, b) => {
-      if (a.totalRisk > b.totalRisk) {
-        return -1;
-      }
-      if (a.totalRisk < b.totalRisk) {
-        return 1;
-      }
-
-      return 0;
-    });
-
-    return sorted;
+    return await this.handle();
   }
 
   private async handle() {
@@ -38,10 +26,21 @@ export class RiskClientUseCase implements IUseCase<IRisk[]> {
         .reduce((acc, curr) => acc + curr, 0);
 
       const score = ((1 / (1 + 2.71828 - (-2.8 + sum))) * 100).toFixed(2);
-
-      return { id, name, totalRisk: Number(score) };
+      return { id, name, totalRisk: Math.abs(Number(score)) };
     });
+    const sorted = risk
+      .sort((a, b) => {
+        if (Number(a.totalRisk) > Number(b.totalRisk)) {
+          return -1;
+        }
+        if (Number(a.totalRisk) < Number(b.totalRisk)) {
+          return 1;
+        }
 
-    return risk;
+        return 0;
+      })
+      .splice(0, 10);
+
+    return sorted;
   }
 }
