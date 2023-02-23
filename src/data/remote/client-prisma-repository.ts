@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import { Respository } from 'src/core/base/repository';
-import { ClientEntity } from 'src/core/domain/entities/client.entitie';
+import { Respository } from '../../core/base/repository';
+import { ClientEntity } from '../../core/domain/entities/client.entitie';
 
 export class ClientPrismaRepository extends Respository<ClientEntity> {
   private prisma = new PrismaClient();

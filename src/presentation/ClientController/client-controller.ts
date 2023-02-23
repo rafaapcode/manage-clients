@@ -8,7 +8,6 @@ import {
   Param,
   ParseIntPipe,
 } from '@nestjs/common';
-import { ClientCreateDto } from '../../shared/dtos/client.create.dto';
 import {
   CreateClientUseCase,
   GetAllClientUseCase,
