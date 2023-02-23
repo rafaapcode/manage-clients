@@ -18,7 +18,7 @@ import {
   RiskClientUseCase,
 } from '../../use-cases';
 import { ClientPrismaRepository } from '../../data/remote/client-prisma-repository';
-import { ClientRequest } from './validation-request';
+import { ClientRequest, ClientPatchRequest } from './validation-request';
 
 @Controller('/api/client')
 export class ClientController {
@@ -38,7 +38,7 @@ export class ClientController {
   @Patch('update/:id')
   public async editClient(
     @Param('id', ParseIntPipe) id: number,
-    @Body() client: Partial<ClientCreateDto>,
+    @Body() client: ClientPatchRequest,
   ) {
     return await this.patch.execute(id, client);
   }
@@ -46,7 +46,7 @@ export class ClientController {
   @Put(':id')
   public async updateClient(
     @Param('id', ParseIntPipe) id: number,
-    @Body() client: ClientCreateDto,
+    @Body() client: ClientRequest,
   ) {
     return await this.put.execute(id, client);
   }
