@@ -19,7 +19,7 @@ export class RiskClientUseCase implements IUseCase<IRisk[]> {
 
   private async handle() {
     const client = await this.clientRepository.getAll();
-    const data = client.map((cli) => this.mapper.mapToUser(cli));
+    const data = await client.map((cli) => this.mapper.mapToUser(cli));
     const risk = data.map(({ id, name, healthIssues }) => {
       const sum = healthIssues
         .map(({ classification }) => classification)
