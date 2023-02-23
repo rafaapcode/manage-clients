@@ -73,6 +73,6 @@
 
 ```
 
-/api/client/:id - (GET) - Retorna o cliente de acordo com o ID
-/api/client - (GET) - Retorna todos os clientes
-/api/client/risk - (GET) - Retorna os 10 clientes com maior risco de saúde
+**/api/client/:id - (GET)** - Retorna o cliente de acordo com o ID
+**/api/client - (GET)** - Retorna todos os clientes
+**/api/client/risk - (GET)** - Retorna os 10 clientes com maior risco de saúde
