@@ -5,6 +5,7 @@ import {
   GetByIdClientUseCase,
   PatchClientUseCase,
   PutClientUseCase,
+  RiskClientUseCase,
 } from './use-cases';
 import { ClientController } from './presentation/ClientController/client-controller';
 
@@ -17,6 +18,7 @@ import { ClientController } from './presentation/ClientController/client-control
     GetByIdClientUseCase,
     PatchClientUseCase,
     PutClientUseCase,
+    RiskClientUseCase,
   ],
 })
 export class AppModule {}

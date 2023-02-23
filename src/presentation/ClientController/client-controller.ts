@@ -18,6 +18,7 @@ import {
   RiskClientUseCase,
 } from '../../use-cases';
 import { ClientPrismaRepository } from '../../data/remote/client-prisma-repository';
+import { ClientRequest } from './validation-request';
 
 @Controller('/api/client')
 export class ClientController {
@@ -56,7 +57,7 @@ export class ClientController {
   }
 
   @Post()
-  public async createClient(@Body() client: ClientCreateDto) {
+  public async createClient(@Body() client: ClientRequest) {
     return await this.create.execute(client);
   }
 
